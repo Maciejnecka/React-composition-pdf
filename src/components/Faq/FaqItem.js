@@ -13,4 +13,5 @@ const FaqItem = (props) => {
   );
 };
 
+FaqItem.displayName = 'FaqItem';
 export default FaqItem;
