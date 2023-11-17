@@ -1,9 +1,8 @@
 'use strict';
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { v4 as uuid } from 'uuid';
-import './styles/main.css';
-const root = createRoot(document.querySelector('#root'));
+// import React from 'react';
+// import { createRoot } from 'react-dom/client';
+// import { v4 as uuid } from 'uuid';
+// import './styles/main.css';
 
 // const List = (props) => {
 //   const { items } = props;
@@ -56,29 +55,37 @@ const root = createRoot(document.querySelector('#root'));
 //   { name: 'Jan', id: uuid() },
 //   { name: 'Anna', id: uuid() },
 // ];
-import Button from './Button';
-import List from './List';
+// import Button from './Button';
+// import List from './List';
 
-class App extends React.Component {
-  state = { numbers: [] };
+// class App extends React.Component {
+//   state = { numbers: [] };
 
-  addNumber = () => {
-    const number = Math.random();
-    this.setState((state) => {
-      return {
-        numbers: [...state.numbers, number],
-      };
-    });
-  };
+//   addNumber = () => {
+//     const number = Math.random();
+//     this.setState((state) => {
+//       return {
+//         numbers: [...state.numbers, number],
+//       };
+//     });
+//   };
 
-  render() {
-    return (
-      <section>
-        <Button onClick={this.addNumber} />
-        <List items={this.state.numbers} />
-      </section>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <section>
+//         <Button onClick={this.addNumber} />
+//         <List items={this.state.numbers} />
+//       </section>
+//     );
+//   }
+// }
+
+// root.render(<App />);
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './components/App';
+
+const root = createRoot(document.querySelector('#root'));
 
 root.render(<App />);
