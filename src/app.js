@@ -36,25 +36,49 @@ const root = createRoot(document.querySelector('#root'));
 //   return <ul>{list}</ul>;
 // };
 
-const List = (props) => {
-  const { items } = props;
-  const list = items.map((i) => {
+// const List = (props) => {
+//   const { items } = props;
+//   const list = items.map((i) => {
+//     return (
+//       <React.Fragment key={i.id}>
+//         <Item name={i.name} />
+//       </React.Fragment>
+//     );
+//   });
+//   return <ul>{list}</ul>;
+// };
+
+// const Item = (props) => {
+//   return <li>{props.name}</li>;
+// };
+
+// const items = [
+//   { name: 'Jan', id: uuid() },
+//   { name: 'Anna', id: uuid() },
+// ];
+import Button from './Button';
+import List from './List';
+
+class App extends React.Component {
+  state = { numbers: [] };
+
+  addNumber = () => {
+    const number = Math.random();
+    this.setState((state) => {
+      return {
+        numbers: [...state.numbers, number],
+      };
+    });
+  };
+
+  render() {
     return (
-      <React.Fragment key={i.id}>
-        <Item name={i.name} />
-      </React.Fragment>
+      <section>
+        <Button onClick={this.addNumber} />
+        <List items={this.state.numbers} />
+      </section>
     );
-  });
-  return <ul>{list}</ul>;
-};
+  }
+}
 
-const Item = (props) => {
-  return <li>{props.name}</li>;
-};
-
-const items = [
-  { name: 'Jan', id: uuid() },
-  { name: 'Anna', id: uuid() },
-];
-
-root.render(<List items={items} />);
+root.render(<App />);
