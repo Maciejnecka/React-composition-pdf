@@ -3,6 +3,18 @@ import React from 'react';
 
 export default class Lifecycle extends React.Component {
   state = { numbersList: [] };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('shouldComponentUpdate');
+    const { numbersList } = nextState;
+    const { length } = numbersList;
+    if (length > 3 && length < 7) {
+      console.log(false);
+      return false;
+    }
+    console.log(true);
+    return true;
+  }
   static getDerivedStateFromProps(props, state) {
     console.log('getDerivedStateFromProps', this);
 
