@@ -1,39 +1,56 @@
-'use strict';
 import React from 'react';
 
 export default class Lifecycle extends React.Component {
   state = { numbersList: [] };
 
+  static getDerivedStateFromProps(props, state) {
+    console.log('getDerivedStateFromProps', this);
+
+    const { number } = props;
+    const { numbersList } = state;
+    if (numbersList.includes(number)) {
+      return null;
+    }
+
+    return {
+      numbersList: [...numbersList, number],
+    };
+  }
+
   shouldComponentUpdate(nextProps, nextState) {
     console.log('shouldComponentUpdate');
+
     const { numbersList } = nextState;
     const { length } = numbersList;
     if (length > 3 && length < 7) {
       console.log(false);
       return false;
     }
+
     console.log(true);
     return true;
   }
-  static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps', this);
 
-    const { number } = props;
-    const { numberList } = state;
-    if (numberList.includes(number)) {
-      return null;
-    }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('getSnapshotBeforeUpdate');
+
     return {
-      numberList: [...numberList, number],
+      height: this.refUl.offsetHeight,
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    console.log('getDerivedStateFromProps');
-    return null;
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('componentDidUpdate');
+
+    console.log('wysokość <ul/> przed aktualizacją:');
+    console.log(snapshot.height);
+    console.log('wysokość <ul/> po aktualizacji:');
+    console.log(this.refUl.offsetHeight);
   }
+
   render() {
     console.log('render');
+
     const { numbersList } = this.state;
     return (
       <>

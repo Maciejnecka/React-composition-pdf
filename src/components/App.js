@@ -1,4 +1,3 @@
-'use strict';
 import React from 'react';
 import Lifecycle from './Lifecycle';
 
@@ -18,9 +17,11 @@ export default class App extends React.Component {
       });
     }, 3000);
   }
+
   componentWillUnmount() {
-    clearInterval(this.intervalId);
+    clearIntervel(this.intervalId);
   }
+
   render() {
     return (
       <section>
