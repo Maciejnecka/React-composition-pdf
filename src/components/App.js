@@ -1,14 +1,32 @@
 'use strict';
 import React from 'react';
-import Box from './Box';
+import Lifecycle from './Lifecycle';
 
 export default class App extends React.Component {
-  boxRef = React.createRef();
+  state = {
+    number: this.randomNumber(),
+  };
+
+  randomNumber() {
+    return parseInt(Math.random() * 10);
+  }
 
   componentDidMount() {
-    console.log(this.boxRef.current.offsetHeight);
+    this.intervalId = setInterval(() => {
+      this.setState({
+        number: this.randomNumber(),
+      });
+    }, 3000);
+  }
+  componentWillUnmount() {
+    clearInterval(this.intervalId);
   }
   render() {
-    return <Box ref={this.boxRef} />;
+    return (
+      <section>
+        <h1>Number: {this.state.number}</h1>
+        <Lifecycle number={this.state.number} />
+      </section>
+    );
   }
 }
