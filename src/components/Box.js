@@ -1,16 +1,12 @@
 'use strict';
 import React from 'react';
 
-export default class Box extends React.Component {
-  getHeight() {
-    return this.sec.offsetHeight;
-  }
+const Box = React.forwardRef((props, ref) => {
+  return (
+    <section ref={ref}>
+      <h1>Box</h1>
+    </section>
+  );
+});
 
-  render() {
-    return (
-      <section ref={(el) => (this.sec = el)}>
-        <h1>Box</h1>
-      </section>
-    );
-  }
-}
+export default Box;
