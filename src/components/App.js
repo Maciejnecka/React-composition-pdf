@@ -1,22 +1,18 @@
 'use strict';
 import React from 'react';
-import { Faq, FaqItem } from './Faq';
 
-const App = () => {
-  return (
-    <Faq>
-      <FaqItem
-        header={'Jak programowac?'}
-        content={'Lorem ipsum dolor...'}
-        isOpen={true}
-      />
-      <FaqItem
-        header={'Dlaczego JavaScript?'}
-        content={'Lorem ipsum dolor...'}
-        isOpen={false}
-      />
-    </Faq>
-  );
-};
+export default class App extends React.Component {
+  secRef = React.createRef();
 
-export default App;
+  componentDidMount() {
+    console.log(this.secRef.current.offsetHeight);
+  }
+
+  render() {
+    return (
+      <section ref={this.secRef}>
+        <p>Lorem ipsum...</p>
+      </section>
+    );
+  }
+}
