@@ -1,18 +1,11 @@
 'use strict';
 import React from 'react';
-
+import Box from './Box';
 export default class App extends React.Component {
-  secRef = React.createRef();
-
   componentDidMount() {
-    console.log(this.secRef.current.offsetHeight);
+    console.log(this.boxRef.getHeight());
   }
-
   render() {
-    return (
-      <section ref={this.secRef}>
-        <p>Lorem ipsum...</p>
-      </section>
-    );
+    return <Box ref={this.boxRef} />;
   }
 }
